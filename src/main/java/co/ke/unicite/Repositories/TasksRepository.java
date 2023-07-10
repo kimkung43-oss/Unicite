@@ -1,0 +1,17 @@
+package co.ke.unicite.Repositories;
+
+import co.ke.unicite.Entities.TaskManagement.Tasks;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface TasksRepository extends JpaRepository<Tasks, Long> {
+    Tasks existsByTitle(String title);
+    List<Tasks> findByIsCompleted(boolean isCompleted);
+    List<Tasks> findByUserAndIsCompleted(long id, boolean isCompleted);
+
+
+
+}
