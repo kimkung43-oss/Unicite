@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface NotesRepository extends JpaRepository<Notes, Long> {
-    List<Notes> findByUser(long Id);
-    Notes existsByTitle(String title);
+//    List<Notes> findByUser(long Id);
+//    Notes existsByTitle(String title);
 
 }

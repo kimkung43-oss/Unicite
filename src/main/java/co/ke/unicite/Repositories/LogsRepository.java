@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface LogsRepository extends JpaRepository<Logs, Long> {
-    List<Logs> findByUser(long id);
+//    List<Logs> findByUser(long id);
 }

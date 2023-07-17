@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface MessageRecipientRepository extends JpaRepository<MessageRecipient, Long> {
-    List<MessageRecipient> findByIsRead(boolean isRead);
+//    List<MessageRecipient> findByIsRead(boolean isRead);
 }

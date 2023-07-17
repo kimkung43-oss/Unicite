@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface MessagesRepository extends JpaRepository<Messages, Long> {
-    List<Messages> findByUser(long id);
+//    List<Messages> findByUser(long id);
 
-    List<Messages> findByConversation(long id);
+//    List<Messages> findByConversation(long id);
 }

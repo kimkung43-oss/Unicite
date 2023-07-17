@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 
-public interface SubtopicsRepository extends JpaRepository<SubtopicsRepository, Long> {
+public interface SubtopicsRepository extends JpaRepository<Subtopics, Long> {
 
-    Subtopics existsByName(String name);
+//    Subtopics existsByName(String name);
 }

@@ -8,9 +8,9 @@ import java.util.List;
 
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
-    Tasks existsByTitle(String title);
-    List<Tasks> findByIsCompleted(boolean isCompleted);
-    List<Tasks> findByUserAndIsCompleted(long id, boolean isCompleted);
+//    Tasks existsByTitle(String title);
+//    List<Tasks> findByIsCompleted(boolean isCompleted);
+//    List<Tasks> findByUserAndIsCompleted(long id, boolean isCompleted);
 
 
 

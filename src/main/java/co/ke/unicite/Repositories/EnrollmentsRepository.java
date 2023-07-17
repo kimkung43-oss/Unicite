@@ -9,13 +9,13 @@ import java.util.List;
 
 @Repository
 public interface EnrollmentsRepository extends JpaRepository<Enrollments,Long> {
-    List<Enrollments> findByUser(long id);
+//    List<Enrollments> findByUser(long id);
 
-    List<Enrollments> findByCourseAndIsActive(long id, boolean isActive);
-    List<Enrollments> findByUserAndIsActive(long id, boolean isActive);
+//    List<Enrollments> findByCourseAndIsActive(long id, boolean isActive);
+//    List<Enrollments> findByUserAndIsActive(long id, boolean isActive);
 
-    List<Enrollments> findByIsActive(boolean active);
+//    List<Enrollments> findByIsActive(boolean active);
 
-    List<Enrollments> findByCourse(long id);
-    List<Enrollments> findByDate(LocalDate date);
+//    List<Enrollments> findByCourse(long id);
+//    List<Enrollments> findByDate(LocalDate date);
 }

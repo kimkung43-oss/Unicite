@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CourseTopicsRepository extends JpaRepository<Topics, Long> {
-    Topics exitsByName(String name);
-
-    Topics findDescriptionByTopicId(String courseId);
+public interface TopicsRepository extends JpaRepository<Topics, Long> {
+//    Topics exitsByName(String name);
+//
+//    Topics findDescriptionByTopicId(String courseId);
 
 }

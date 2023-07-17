@@ -10,9 +10,9 @@ import java.util.List;
 public interface TimetableRepository extends JpaRepository<Timetable, Long> {
 //    Timetable findByCourse(long id);
 
-    List<Timetable> findByCourse(long id);
+//    List<Timetable> findByCourse(long id);
 
-    List<Timetable> findByDay(String day);
+//    List<Timetable> findByDay(String day);
 
 
 }

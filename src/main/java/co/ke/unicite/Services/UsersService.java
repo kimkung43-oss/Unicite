@@ -6,18 +6,17 @@ import co.ke.unicite.Models.UsersModel;
 public interface UsersService {
     Users findById(long userId);
 
-    Users createUser(UsersModel signUpModel);
+    Users createUser(UsersModel usersModel);
 
 
-    Users updateUser(UsersModel signUpModel);
+    Users updateUser(UsersModel usersModel);
 
     Users deleteUser(long userId);
 
     boolean existsByEmail(String email);
 
-    boolean existsByUserName(String phoneNo);
-
-    Users createChildUser(UsersModel signUpChildModel);
+    boolean existsByUsername(String userName);
+    
 
     boolean existsById(Long userId);
 }

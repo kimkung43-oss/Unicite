@@ -1,6 +1,6 @@
 package co.ke.unicite.Entities.Chats;
 
-import co.ke.unicite.Entities.RoomManagement.CourseGroupMembers;
+import co.ke.unicite.Entities.RoomManagement.GroupMembers;
 import co.ke.unicite.Entities.UserManagement.Users;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -31,7 +31,7 @@ public class MessageRecipient implements Serializable {
 
     @ManyToOne
     @JoinColumn(name= "fk_receiver_group_id")
-    private CourseGroupMembers courseGroupMembers;
+    private GroupMembers groupMembers;
 
     @ManyToOne
     @JoinColumn(name="fk_message_id")

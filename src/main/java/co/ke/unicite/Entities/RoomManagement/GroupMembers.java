@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name="course_group_members")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CourseGroupMembers implements Serializable {
+public class GroupMembers implements Serializable {
     private static final long serialVersionUID = 1L;
 
 

@@ -8,12 +8,12 @@ import java.util.List;
 
 @Repository
 public interface CourseMaterialsRepository extends JpaRepository<CourseMaterials, Long> {
-    CourseMaterials existsByName(String name);
+//    CourseMaterials existsByName(String name);
+//
+//    CourseMaterials findByFilePath(String path);
 
-    CourseMaterials findByFilePath(String path);
-
-    List<CourseMaterials> findByCourse(long id);
-    List<CourseMaterials> findByTopic(long id);
-    List<CourseMaterials> findBySubtopic(long id);
+//    List<CourseMaterials> findByCourse(long id);
+//    List<CourseMaterials> findByTopic(long id);
+//    List<CourseMaterials> findBySubtopic(long id);
 
 }

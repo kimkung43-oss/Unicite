@@ -1,0 +1,179 @@
+@startuml
+
+!theme plain
+top to bottom direction
+skinparam linetype ortho
+
+class AbstractAuditable {
+   createdDate:  Date 
+   lastModifiedDate:  Date 
+}
+class AbstractPersistable {
+   id:  PK 
+}
+class Announcements {
+   announcement_id:  Long 
+   createdDate:  LocalDate 
+   description:  String 
+   isActive:  Boolean 
+   scheduledDate:  LocalDate 
+   title:  String 
+}
+class AssignmentSubmission {
+   id:  Long 
+   filepath:  String 
+   submissionDate:  LocalDateTime 
+}
+class Assignments {
+   id:  Long 
+   deadline:  LocalDateTime 
+   description:  String 
+   isActive:  boolean 
+   title:  String 
+}
+class Conversation {
+   conversation_id:  Long 
+   title:  String 
+}
+class CourseGroups {
+   course_group_id:  Long 
+   name:  String 
+}
+class CourseMaterials {
+   id:  Long 
+}
+class Courses {
+   courseId:  Long 
+   IsActive:  boolean 
+   courseCode:  String 
+   courseName:  String 
+   description:  String 
+   venueName:  String 
+}
+class Enrollments {
+   enrollmentId:  Long 
+   enrolledDate:  LocalDate 
+   isActive:  Boolean 
+}
+class ForumReply {
+   reply_id:  Long 
+   message:  String 
+   sent_time:  LocalDateTime 
+}
+class ForumThreads {
+   thread_id:  Long 
+   isActive:  Boolean 
+   threadTitle:  String 
+   timestamp:  LocalDateTime 
+}
+class Grades {
+   id:  Long 
+   score:  int 
+}
+class GroupMembers {
+   groupMemberId:  Long 
+}
+class Logs {
+   logId:  Long 
+   action:  String 
+   timestamp:  LocalDateTime 
+}
+class MessageRecipient {
+   id:  Long 
+   isRead:  Boolean 
+}
+class Messages {
+   message_id:  Long 
+   mediaUrl:  String 
+   message_body:  String 
+   sentDateTime:  LocalDateTime 
+}
+class Notes {
+   note_id:  Long 
+   content:  String 
+   createdDate:  LocalDate 
+   modifiedDate:  LocalDate 
+   title:  String 
+}
+class Roles {
+   roleId:  Long 
+   code:  String 
+   roleName:  String 
+}
+class Subtopics {
+   subtopics_id:  Long 
+   subtopic_name:  String 
+}
+class Tasks {
+   task_id:  Long 
+   createdDate:  LocalDate 
+   description:  String 
+   isCompleted:  Boolean 
+   title:  String 
+}
+class Timetable {
+   id:  Long 
+   day:  String 
+   endTime:  LocalTime 
+   startTime:  LocalTime 
+}
+class Topics {
+   topic_id:  Long 
+   description:  String 
+   name:  String 
+}
+class Uploads {
+   Id:  Long 
+   fileName:  String 
+   filePath:  String 
+   fileSize:  Long 
+   fileType:  String 
+}
+class Users {
+   id:  Long 
+   email:  String 
+   firstName:  String 
+   isActive:  Boolean 
+   lastName:  String 
+   password:  String 
+   username:  String 
+}
+
+AbstractAuditable     -[#595959,plain]-^  AbstractPersistable  
+Announcements        "0..*" -[#595959,plain]-> "0..1" Courses              
+AssignmentSubmission "0..*" -[#595959,plain]-> "0..1" CourseGroups         
+AssignmentSubmission "0..*" -[#595959,plain]-> "0..1" Users                
+Assignments          "0..1" <-[#595959,plain]-> "0..*" AssignmentSubmission 
+Assignments          "0..*" -[#595959,plain]-> "0..1" CourseGroups         
+Assignments          "0..*" -[#595959,plain]-> "0..1" Courses              
+Conversation         "0..1" <-[#595959,plain]-> "0..*" Messages             
+CourseGroups         "0..*" -[#595959,plain]-> "0..1" Courses              
+CourseGroups         "0..1" <-[#595959,plain]-> "0..*" GroupMembers         
+CourseMaterials      "0..*" -[#595959,plain]-> "0..1" Courses              
+CourseMaterials      "0..*" <-[#595959,plain]-> "0..1" Subtopics            
+CourseMaterials      "0..*" <-[#595959,plain]-> "0..1" Topics               
+CourseMaterials      "0..1" -[#595959,plain]-> "0..1" Uploads              
+Courses              "0..*" -[#595959,plain]-> "0..1" Users                
+Enrollments          "0..*" -[#595959,plain]-> "0..1" Courses              
+Enrollments          "0..*" -[#595959,plain]-> "0..1" Users                
+ForumReply           "0..*" <-[#595959,plain]-> "0..1" ForumThreads         
+ForumReply           "0..*" -[#595959,plain]-> "0..1" Users                
+ForumThreads         "0..*" -[#595959,plain]-> "0..1" Users                
+Grades               "0..*" -[#595959,plain]-> "0..1" Assignments          
+Grades               "0..*" -[#595959,plain]-> "0..1" CourseGroups         
+Grades               "0..*" -[#595959,plain]-> "0..1" Users                
+GroupMembers         "0..*" -[#595959,plain]-> "0..1" Users                
+Logs                 "0..*" -[#595959,plain]-> "0..1" Users                
+MessageRecipient     "0..*" -[#595959,plain]-> "0..1" GroupMembers         
+MessageRecipient     "0..*" -[#595959,plain]-> "0..1" Messages             
+MessageRecipient     "0..*" -[#595959,plain]-> "0..1" Users                
+Messages             "0..*" -[#595959,plain]-> "0..1" Messages             
+Messages             "0..*" -[#595959,plain]-> "0..1" Users                
+Notes                "0..*" -[#595959,plain]-> "0..1" Users                
+Subtopics            "1..*" <-[#595959,plain]-> "0..1" Topics               
+Tasks                "0..*" -[#595959,plain]-> "0..1" Users                
+Timetable            "0..*" -[#595959,plain]-> "0..1" Courses              
+Topics               "0..*" -[#595959,plain]-> "0..1" Courses              
+Users                "0..1" -[#595959,plain]-> "0..*" Courses              
+Users                "0..*" -[#595959,plain]-> "0..*" Roles                
+@enduml

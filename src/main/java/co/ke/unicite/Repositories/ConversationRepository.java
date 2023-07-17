@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ConversationRepository extends JpaRepository<Conversation, Long>{
-    List<Conversation> findByTitle(String title);
+//    List<Conversation> findByTitle(String title);
 }

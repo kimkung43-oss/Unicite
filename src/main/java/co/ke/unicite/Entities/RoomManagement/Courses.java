@@ -33,24 +33,32 @@ public class Courses implements Serializable {
     @Column(length = 30)
     private String venueName;
 
+    @Column(name="status")
+    private boolean IsActive = true;
+
     @ManyToOne
     @JoinColumn(name="fk_user_id")
     private Users user;
 
-    @OneToMany(mappedBy = "courses",cascade = CascadeType.ALL)
-    private HashSet<Topics> topics = new HashSet<>();
+//    @OneToMany(mappedBy = "courses",cascade = CascadeType.ALL,orphanRemoval = true)
+//    private HashSet<Topics> topics = new HashSet<>();
+//
+//
+//    @OneToMany(mappedBy="course", cascade = CascadeType.ALL)
+//    private Set<CourseMaterials> courseMaterials= new HashSet<>();
+//
+//    @OneToMany(mappedBy="course", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private Set<CourseGroups> courseGroups = new HashSet<>();
 
 
-    @OneToMany(mappedBy="course", cascade = CascadeType.ALL)
-    private Set<CourseMaterials> courseMaterials= new HashSet<>();
-
-    @OneToMany(mappedBy="course", cascade = CascadeType.ALL)
-    private Set<CourseGroups> courseGroups = new HashSet<>();
-
-    public Courses(String courseName, String courseCode, String description, String venueName) {
+    public Courses(String courseName, String courseCode, String description, String venueName, boolean isActive) {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.description = description;
         this.venueName = venueName;
+        IsActive = isActive;
+    }
+    public void setInactive() {
+        this.IsActive = false;
     }
 }

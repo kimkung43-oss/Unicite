@@ -32,7 +32,7 @@ public class CourseGroups implements Serializable {
 
     // Mapping relationship with GroupMember
     @OneToMany(mappedBy = "courseGroup", fetch= FetchType.LAZY)
-    private Set<CourseGroupMembers> members=new HashSet<>();
+    private Set<GroupMembers> members=new HashSet<>();
 
     public CourseGroups(String name) {
         this.name = name;

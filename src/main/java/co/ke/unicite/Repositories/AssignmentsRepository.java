@@ -9,14 +9,14 @@ import java.util.List;
 @Repository
 public interface AssignmentsRepository extends JpaRepository<Assignments, Long> {
 
-    Assignments existsByName(String name);
-
-    Assignments findByIsActive(boolean isActive);
+//    Assignments existsByTitle(String title);
+//
+//    Assignments findByIsActive(boolean isActive);
 //    @Query("SELECT * FROM Assignments a WHERE a.course_id =:id")
-    List<Assignments> findByCourse(long id);
+//    List<Assignments> findByCourse(long id);
 //    @Query("SELECT a FROM Assignments a WHERE a.user_id =:id")
-    List<Assignments> findByUser(long id);
+//    List<Assignments> findByUser(long id);
 
-    List<Assignments> findByCourseAndUser(long courseId, long userId);
+//    List<Assignments> findByCourseAndUser(long courseId, long userId);
 
 }

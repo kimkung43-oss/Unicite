@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RoleRepository extends JpaRepository<Roles, Long> {
-    List<Roles> findByName(String roleName);
+    List<Roles> findByRoleName(String roleName);
     Roles findByCode(String code);
     boolean existsByCode(String string);
 }

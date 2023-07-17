@@ -8,8 +8,8 @@ import java.util.List;
 
 @Repository
 public interface ForumThreadsRepository extends JpaRepository<ForumThreads, Long> {
-    ForumThreads existsByTitle(String title);
-    List<ForumThreads> findByUser(long Id);
+//    ForumThreads existsByTitle(String title);
+//    List<ForumThreads> findByUser(long Id);
 
-    ForumThreads findByForumReply(long id);
+//    ForumThreads findByForumReply(long id);
 }

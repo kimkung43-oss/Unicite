@@ -1,6 +1,7 @@
 package co.ke.unicite.Entities.UserManagement;
 
 import co.ke.unicite.Entities.RoomManagement.Courses;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +27,7 @@ public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private Long userId;
+    private Long id;
 
     @NotNull
     @NonNull
@@ -57,30 +59,27 @@ public class Users implements Serializable {
     @Column(name="is_active")
     private Boolean isActive;
 
-//    @JsonIgnore
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "role_id")
-//    private Roles role;
+
     @ManyToMany
     @JoinTable(name= "user_roles",
             joinColumns = @JoinColumn(name="user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Roles> roles = new HashSet<Roles>();
 
+    public Collection<Roles> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Roles> roles) {
+        this.roles = roles;
+    }
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Courses> courses = new HashSet<>();
 
-//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-//    private Set<CourseGroupMembers> courseGroupMember = new HashSet<>();
-    @OneToMany
-    @JoinTable(name = "CourseGroupMembers",
-        joinColumns=@JoinColumn(name = "course_group_id"),
-        inverseJoinColumns=@JoinColumn(name = "user_id")
-    )
-    private Set<Users> user = new HashSet<>();
 
     public Users(Long userId, @NotNull @NonNull String email, @NotNull @NonNull String password, String username, @NotNull @NonNull String firstName, @NotNull @NonNull String lastName, @NotNull Boolean isActive) {
-        this.userId = userId;
+        this.id = userId;
         this.email = email;
         this.password = password;
         this.username = username;

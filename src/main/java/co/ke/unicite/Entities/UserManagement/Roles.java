@@ -17,22 +17,13 @@ public class Roles implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @SequenceGenerator(
-            name = "roleIdSequence",
-            sequenceName = "roleIdSequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "roleIdSequence"
-    )
-    @Column(name="roleId")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long roleId;
 
 
     @NotNull
     @NonNull
-    @Column(name="roleName",updatable = false,insertable = false)
+    @Column(name="roleName")
     private String roleName;
 
 

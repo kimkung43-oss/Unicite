@@ -10,7 +10,7 @@ import java.io.Serializable;
 public class UsersModel implements Serializable {
     private Long userId;
     @NotBlank
-    @Email
+    @Email(message = "Enter a valid email address")
     private String email;
     @NotBlank
     private String password;
