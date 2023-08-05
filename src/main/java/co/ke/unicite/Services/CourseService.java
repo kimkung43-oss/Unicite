@@ -15,7 +15,7 @@ public interface CourseService {
 
     Courses createCourse(CoursesModel coursesModel);
 
-    Courses updateCourse(Long id, CoursesModel coursesModel);
+    Courses updateCourse(CoursesModel coursesModel);
 
     Courses deleteCourse(Long id);
 

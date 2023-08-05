@@ -31,10 +31,11 @@ public class Users implements Serializable {
 
     @NotNull
     @NonNull
+    @Column(length = 255, updatable = false, unique = true,columnDefinition = "TEXT")
     @Email(regexp = "[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,3}",
             flags = Pattern.Flag.CASE_INSENSITIVE)
     //Ensure validation of email with regex, with an added lowercase constraint-remover
-    @Column(length = 255, updatable = false, unique = true,columnDefinition = "TEXT")
+
     private String email;
 
     @NotNull
@@ -66,19 +67,12 @@ public class Users implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Roles> roles = new HashSet<Roles>();
 
-    public Collection<Roles> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Roles> roles) {
-        this.roles = roles;
-    }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Courses> courses = new HashSet<>();
 
 
-    public Users(Long userId, @NotNull @NonNull String email, @NotNull @NonNull String password, String username, @NotNull @NonNull String firstName, @NotNull @NonNull String lastName, @NotNull Boolean isActive) {
+    public Users(Long userId, @NotNull @NonNull @Email String email, @NotNull @NonNull String password, String username, @NotNull @NonNull String firstName, @NotNull @NonNull String lastName, @NotNull Boolean isActive) {
         this.id = userId;
         this.email = email;
         this.password = password;

@@ -42,8 +42,8 @@ public class CourseServiceImpl implements CourseService{
 
     @Override
     public Courses createCourse(CoursesModel coursesModel) {
-        Users user = usersRepository.findById(coursesModel.getUserId()).get();
-//                .orElseThrow(() -> new ResourceNotFoundException("Users not found with id: " + userId));
+        Users user = usersRepository.findById(coursesModel.getUserId())
+                .orElseThrow(() -> new ResourceNotFoundException("Users not found with id: " + coursesModel.getUserId()));
 //        Long userIdFromUserObject = user.getId();
         Courses courses = new Courses();
         courses.setCourseName(coursesModel.getCourseName());
@@ -55,9 +55,10 @@ public class CourseServiceImpl implements CourseService{
     }
 
     @Override
-    public Courses updateCourse(Long id, CoursesModel coursesModel) {
-        Courses existingCourse = coursesRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Courses not found with id: " + id));
+    public Courses updateCourse(CoursesModel coursesModel) {
+        //  Replace courseId with relevant session attribute once front-end is available
+        Courses existingCourse = coursesRepository.findById(coursesModel.getCourseId())
+                .orElseThrow(() -> new ResourceNotFoundException("Courses not found with id: " + coursesModel.getCourseId()));
         existingCourse.setCourseName(coursesModel.getCourseName());
         existingCourse.setCourseCode(coursesModel.getCourseCode());
         existingCourse.setDescription(coursesModel.getDescription());

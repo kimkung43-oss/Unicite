@@ -34,7 +34,7 @@ public class CourseController {
 
     @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateCourse(@RequestBody CoursesModel coursesModel, Long courseId) {
-        courseService.updateCourse(courseId, coursesModel);
+        courseService.updateCourse(coursesModel);
 
         return ResponseEntity.ok("User updated succesfully");
     }

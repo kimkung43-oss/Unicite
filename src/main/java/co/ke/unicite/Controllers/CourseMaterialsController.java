@@ -21,4 +21,5 @@ public class CourseMaterialsController {
         CourseMaterials courseMaterials = courseMaterialsService.uploadCourseMaterial(uploadsModel, file);
         return ResponseEntity.ok().body(courseMaterials);
     }
+
 }

@@ -3,10 +3,14 @@ package co.ke.unicite.Controllers;
 import co.ke.unicite.Entities.UserManagement.Users;
 import co.ke.unicite.Models.UsersModel;
 import co.ke.unicite.Services.UsersService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -15,13 +19,16 @@ public class UserController {
     @Autowired
     UsersService usersService;
 
-    @PostMapping(value = "/create", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> createUser(@RequestBody UsersModel usersModel) {
+    @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> createUser(@RequestBody @Valid UsersModel usersModel) {
 
         if (usersModel.getEmail() == "" || usersModel.getEmail() == null) {
             return ResponseEntity.badRequest().body("Please enter your email.");
 
-        } else if (usersModel.getFirstName() == "" || usersModel.getFirstName() == null) {
+        }
+//        else if{usersModel.getEmail()==e
+
+         else if (usersModel.getFirstName() == "" || usersModel.getFirstName() == null) {
             return ResponseEntity.badRequest().body("Please your first name.");
 
         } else if (usersModel.getLastName() == "" || usersModel.getLastName() == null) {
@@ -59,6 +66,19 @@ public class UserController {
         Users deletedUser = usersService.deleteUser(userId);
         return ResponseEntity.ok("User deleted succesfully");
     }
+
+    @GetMapping("/list/all")
+    public ResponseEntity<List<Users>> getAllUsers() {
+        List<Users> usersList=usersService.getUsers();
+        return ResponseEntity.ok(usersList);
+    }
+
+    @GetMapping("/list/roles/")
+    public ResponseEntity<List<Users>> getUsersByRole(@RequestParam Long roleId){
+        List<Users> users = usersService.getUsersByRole(roleId);
+        return ResponseEntity.ok(users);
+    }
+
 
 }
 

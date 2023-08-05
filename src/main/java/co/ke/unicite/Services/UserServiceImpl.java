@@ -9,8 +9,7 @@ import co.ke.unicite.Repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class UserServiceImpl implements UsersService {
@@ -23,7 +22,8 @@ public class UserServiceImpl implements UsersService {
 
     @Override
     public Users findById(long userId) {
-        return usersRepository.findById(userId).get();
+        return usersRepository.findById(userId)
+            .orElseThrow(() ->new ResourceNotFoundException("User with the given id does not exist" + userId));
     }
 
     @Override
@@ -49,6 +49,11 @@ public class UserServiceImpl implements UsersService {
     }
 
     @Override
+    public List<Users> getUsers() {
+        return usersRepository.findAll();
+    }
+
+    @Override
     public boolean existsByEmail(String email) {
         return (usersRepository.existsByEmail(email));
     }
@@ -57,6 +62,13 @@ public class UserServiceImpl implements UsersService {
     @Override
     public boolean existsByUsername(String userName) {
         return (usersRepository.existsByUsername(userName));
+    }
+
+    @Override
+    public List<Users> getUsersByRole(Long roleId) {
+        Roles role = rolesRepository.findById(roleId)
+                .orElseThrow(()->new ResourceNotFoundException("Role not found " + roleId));
+        return usersRepository.findByRoles(role);
     }
 
 
