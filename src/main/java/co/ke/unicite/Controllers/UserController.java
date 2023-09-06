@@ -7,7 +7,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,19 +21,19 @@ public class UserController {
     @PostMapping(value = "/signup", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> createUser(@RequestBody @Valid UsersModel usersModel) {
 
-        if (usersModel.getEmail() == "" || usersModel.getEmail() == null) {
-            return ResponseEntity.badRequest().body("Please enter your email.");
-
-        }
-//        else if{usersModel.getEmail()==e
-
-         else if (usersModel.getFirstName() == "" || usersModel.getFirstName() == null) {
-            return ResponseEntity.badRequest().body("Please your first name.");
-
-        } else if (usersModel.getLastName() == "" || usersModel.getLastName() == null) {
-            return ResponseEntity.badRequest().body("Please enter your last name.");
-
-        }
+//        if (usersModel.getEmail() == "" || usersModel.getEmail() == null) {
+//            return ResponseEntity.badRequest().body("Please enter your email.");
+//
+//        }
+////        else if{usersModel.getEmail()==e
+//
+//         else if (usersModel.getFirstName() == "" || usersModel.getFirstName() == null) {
+//            return ResponseEntity.badRequest().body("Please your first name.");
+//
+//        } else if (usersModel.getLastName() == "" || usersModel.getLastName() == null) {
+//            return ResponseEntity.badRequest().body("Please enter your last name.");
+//
+//        }
         if (usersService.existsByEmail(usersModel.getEmail())) {
             return ResponseEntity.badRequest().body("Email already exists.");
         }
@@ -50,20 +49,22 @@ public class UserController {
 
     @PutMapping(value = "/update", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> updateUser(@RequestBody UsersModel usersModel) {
-        Users updatedUser = usersService.updateUser(usersModel);
+//        Users updatedUser =
+        usersService.updateUser(usersModel);
 
         return ResponseEntity.ok("User updated succesfully");
     }
 
     @PostMapping("/delete")
     public ResponseEntity<?> deleteUser(@RequestParam long userId) {
-        Users user = usersService.findById(userId);
+//        Users user = usersService.findById(userId);
 
 //            if (user.isAdmin()) {
 //                return ResponseEntity.badRequest().body("Error: Cannot delete user.");
 //            }
 
-        Users deletedUser = usersService.deleteUser(userId);
+//        Users deletedUser =
+        usersService.deleteUser(userId);
         return ResponseEntity.ok("User deleted succesfully");
     }
 
@@ -78,6 +79,18 @@ public class UserController {
         List<Users> users = usersService.getUsersByRole(roleId);
         return ResponseEntity.ok(users);
     }
+
+//    @ExceptionHandler(MethodArgumentNotValidException.class)
+//    @ResponseStatus(HttpStatus.BAD_REQUEST)
+//    public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
+//        Map<String, String> errors = new HashMap<>();
+//        ex.getBindingResult().getFieldErrors().forEach(error-> {
+//            String fieldName =  error.getField();
+//            String errorMessage = error.getDefaultMessage();
+//            errors.put(fieldName, errorMessage);
+//        });
+//        return errors;
+//    }
 
 
 }
