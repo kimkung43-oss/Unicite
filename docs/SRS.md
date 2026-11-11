@@ -4,7 +4,7 @@
 
 **Version:** 1.0
 **Date:** November 2026
-**Based on:** Project Proposal, Kenyatta University
+**Based on:** Unicite ILS Project Proposal, Kenyatta University
 
 ---
 
